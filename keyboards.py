@@ -13,7 +13,7 @@ def go_to_cabinet(lang):
     keyboard = types.InlineKeyboardMarkup()
     keyboard.row(
         types.InlineKeyboardButton(text=phrases.all[lang].button_cabinet,
-                                   callback_data="rus"))
+                                   callback_data="cabinet"))
     return keyboard
 
 
