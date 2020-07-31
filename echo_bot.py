@@ -63,9 +63,8 @@ def show_coins(hide_small_price, api_key, api_secret, chat_id):
     future_message = phrases.all[chats[chat_id].lang].your_balance + " = " + str(full_balance) + "$\n\n"
     for coin in all_coins:
         future_message += "*" + coin['asset'] + "*" + ":\n   " + coin['free'] + " - " + phrases.all[
-            chats[chat_id].lang] + "   █   " + coin[
-                              'locked'] + " - " + phrases.all[chats[chat_id].lang].locked + "   (≈" + str(
-            round(float(coin['inUSDT']), 2)) + "$) \n\n"
+            chats[chat_id].lang].free + "   █   " + coin['locked'] + " - " + phrases.all[chats[chat_id].lang].locked + "   (≈" +\
+                          str(round(coin['inUSDT'], 2)) + "$) \n\n"
     return future_message
 
 
