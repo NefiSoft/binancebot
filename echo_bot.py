@@ -4,6 +4,7 @@ from ChatInfo import Chat_info
 import phrases
 import keyboards
 import telegram_token
+import sql_connect
 
 bot = telebot.TeleBot(telegram_token.token)
 chats = dict()
@@ -14,7 +15,7 @@ def send_welcome(message):
     if chats.get(message.chat.id) is None:
         chats[message.chat.id] = Chat_info(message.chat.id)
     if not hasattr(chats[message.chat.id], "lang"):
-        bot.send_message(message.chat.id, phrases.all["eng"].choose_lang, reply_markup=keyboards.choose_lang())
+        bot.send_message(message.chat.id, phrases.all["eng"].choose_lang + str(sql_connect.get_json()), reply_markup=keyboards.choose_lang())
     else:
         bot.send_message(message.chat.id, phrases.all[chats[message.chat.id].lang].welcome,
                          reply_markup=keyboards.go_to_cabinet(chats[message.chat.id].lang), parse_mode="Markdown")
