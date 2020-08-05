@@ -29,7 +29,14 @@ def get_account_info(hide_small, api_key, api_secret):
                 # if component['symbol'] == coin['asset'] + 'USDT':
                     # amount_in_usdt = float(component['price']) * (float(coin['free']) + float(coin['locked']))
                     # was_finded = True
-            if not was_finded:
+            if coin['asset'] == "BTC":
+                for component in prices:
+                    if component['symbol'] == 'BTCUSDT':
+                        btc_price = float(component['price'])
+                        amount_in_usdt = (float(coin['free']) + float(coin['locked'])) * btc_price
+            elif coin['asset'] == "USDT":
+                amount_in_usdt = (float(coin['free']) + float(coin['locked']))
+            else:
                 btc_price = 0.0
                 for component in prices:
                     if component['symbol'] == 'BTCUSDT':
