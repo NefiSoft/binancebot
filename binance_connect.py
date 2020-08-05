@@ -25,10 +25,10 @@ def get_account_info(hide_small, api_key, api_secret):
         if float(coin['free']) + float(coin['locked']) > 0:
             was_finded = False
             amount_in_usdt = 0.0
-            for component in prices:
-                if component['symbol'] == coin['asset'] + 'USDT':
-                    amount_in_usdt = float(component['price']) * (float(coin['free']) + float(coin['locked']))
-                    was_finded = True
+            # for component in prices:
+                # if component['symbol'] == coin['asset'] + 'USDT':
+                    # amount_in_usdt = float(component['price']) * (float(coin['free']) + float(coin['locked']))
+                    # was_finded = True
             if not was_finded:
                 btc_price = 0.0
                 for component in prices:
