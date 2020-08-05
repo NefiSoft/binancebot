@@ -11,7 +11,14 @@
     "authorised": "Вы успешно авторизовались!",
     "fail_authorisation": "Ключ или секрет оказался неверным. Повторите попытку.",
     "button_try_again": "\uD83D\uDD03Повторить попытку",
-    "button_refresh": "\uD83D\uDD03Обновить"
+    "button_refresh": "\uD83D\uDD03Обновить",
+    "button_back": "Назад",
+    "hide_small": "Скрыть малые суммы (<0.01$)",
+    "on": "ВКЛ",
+    "off": "ВЫКЛ",
+    "your_balance": "Баланс вашего кошелька",
+    "locked": "занято",
+    "free": "свободно"
   },
   "eng":
   [

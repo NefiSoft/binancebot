@@ -18,7 +18,7 @@ def try_connect(api_key: str, api_secret: str):
 
 def get_account_info(hide_small, api_key, api_secret):
     all_coins = []
-    client = Client(api_key,api_secret)
+    client = Client(api_key, api_secret)
     info = client.get_account()
     prices = client.get_all_tickers()
     for coin in info['balances']:

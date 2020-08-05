@@ -1,6 +1,7 @@
 import psycopg2
 from psycopg2 import sql
 import json
+import ast
 
 dbname = 'd87n1rrb4jqd8'
 user = 'blnwzrmviqttom'
@@ -22,20 +23,20 @@ def try_connect():
 def get_json():
     conn = psycopg2.connect(dbname=dbname, user=user, port=port,
                             password=password, host=host)
-    cursor = conn.cursor()
-    cursor.execute('SELECT json FROM chat_info ORDER BY id DESC LIMIT 1')
-    records = cursor.fetchall()
-    return records
-    cursor.close()
-    conn.close()
+    with conn.cursor() as cursor:
+        cursor.execute('SELECT json FROM chat_info ORDER BY id DESC LIMIT 1')
+        records = cursor.fetchall()
+        print(records[0][0])
+        return json.loads(records[0][0])
 
 
-def save_json(json: str):
+def save_json(json_save : dict):
+    json_save = json.dumps(json_save)
     conn = psycopg2.connect(dbname=dbname, user=user, port=port,
                             password=password, host=host)
     with conn.cursor() as cursor:
         conn.autocommit = True
-        insert = sql.SQL("INSERT INTO chat_info (json) VALUES ('" + json + "')")
+        insert = sql.SQL("INSERT INTO chat_info (json) VALUES ('" + json_save + "')")
         cursor.execute(insert)
         cursor.execute('''DELETE FROM chat_info
   WHERE id <= (
